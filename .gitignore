@@ -220,3 +220,11 @@ __marimo__/
 #Personal
 choosen.md
 uppgift.md
+
+# Utdata och rapporter (skapas vid körtid)
+output/
+reports/
+*.csv
+
+# Loggmappar
+logs/

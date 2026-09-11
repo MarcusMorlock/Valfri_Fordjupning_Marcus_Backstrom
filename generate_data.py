@@ -2,11 +2,6 @@ import json
 
 from pathlib import Path
 
-
-data_mall = [
-    {"sensor_id": "", "region": "", "sector": "", "temperature": 0.0}
-]
-
 correct_data = [
     {"sensor_id": "S1", "region": "Orebro", "sector": "W", "temperature": 20.0},
     {"sensor_id": "S2", "region": "Orebro", "sector": "C", "temperature": 21.2},
@@ -32,9 +27,9 @@ include_null_data = [
 ]
 
 unit_incorrect_data = [
-    {"sensor_id": "S1", "region": "Orebro", "sector": "W", "temperature": 20.0},
+    {"sensor_id": "S1", "region": "Orebro", "sector": "W", "temperature": 30.0},
     {"sensor_id": "S2", "region": "Orebro", "sector": "C", "temperature": 21.2},
-    {"sensor_id": "S3", "region": "Orebro", "sector": "SE", "temperature": 40.3},
+    {"sensor_id": "S3", "region": "Orebro", "sector": "SE", "temperature": 50.3},
     {"sensor_id": "S4", "region": "Orebro", "sector": "S", "temperature": 20.5},
     {"sensor_id": "S5", "region": "Stockholm", "sector": "C", "temperature": 100.0}
 ]
@@ -47,12 +42,13 @@ mixed_failure_data = [
     {"sensor_id": "S5", "region": "Stockholm", "sector": "C", "temperature": 10.0}
 ]
 
+# 
 datasets = {
-    "correct_data": correct_data,
-    "incorrect_data": incorrect_data,
-    "include_null_data": include_null_data,
-    "unit_incorrect_data": unit_incorrect_data,
-    "mixed_failure_data": mixed_failure_data
+    "correct_data.json": correct_data,
+    "incorrect_data.json": incorrect_data,
+    "include_null_data.json": include_null_data,
+    "unit_incorrect_data.json": unit_incorrect_data,
+    "mixed_failure_data.json": mixed_failure_data
 }
 
 data_dir = Path("data")
