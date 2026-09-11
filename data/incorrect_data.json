@@ -1,0 +1,32 @@
+[
+  {
+    "sensor_id": "S1",
+    "region": "Örebro",
+    "sector": "väster",
+    "temperature": 20.0
+  },
+  {
+    "sensor_id": "S2",
+    "region": "Orebro",
+    "sector": "Centrum",
+    "temperature": 21.2
+  },
+  {
+    "sensor_id": "S3",
+    "region": "orobro",
+    "sector": "SE",
+    "temperature": 20.3
+  },
+  {
+    "sensor_id": "S4",
+    "region": "Orebro",
+    "sector": "S",
+    "temperature": 20.5
+  },
+  {
+    "sensor_id": "S5",
+    "region": "Stockish",
+    "sector": "Centrum",
+    "temperature": 10.0
+  }
+]

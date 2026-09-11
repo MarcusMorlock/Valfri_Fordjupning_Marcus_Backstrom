@@ -1,0 +1,32 @@
+[
+  {
+    "sensor_id": "S1",
+    "region": "None",
+    "sector": "W",
+    "temperature": 20.0
+  },
+  {
+    "sensor_id": "S2",
+    "region": "",
+    "sector": "C",
+    "temperature": 21.2
+  },
+  {
+    "sensor_id": "S3",
+    "region": "Orebro",
+    "sector": "SE",
+    "temperature": null
+  },
+  {
+    "sensor_id": "S4",
+    "region": "Orebro",
+    "sector": "",
+    "temperature": 20.5
+  },
+  {
+    "sensor_id": "S5",
+    "region": "Stockholm",
+    "sector": "C",
+    "temperature": 10.0
+  }
+]
