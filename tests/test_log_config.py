@@ -30,15 +30,15 @@ def test_configure_logging_creates_directory_and_file(tmp_path: Path):
 
 
 def test_configure_logging_prevent_duplicate_handlers(tmp_path: Path):
-    
+
     test_log_file = tmp_path / "test.log"
     logger = logging.getLogger(LOGGER_NAME)
 
-    # Körs två gånger för att framkalla ev. dubletter
+    # Run twice to reveal any duplicates.
     configure_logging(log_path=test_log_file)
     configure_logging(log_path=test_log_file)
 
-    # Räkna exakt de typer av handlers du själv lägger till (exkludera Pytests LogCaptureHandler)
+    # Count exactly the types of handlers you add yourself (excluding Pytest's LogCaptureHandler).
     file_handlers = [h for h in logger.handlers if type(h) is logging.FileHandler]
     stream_handlers = [h for h in logger.handlers if type(h) is logging.StreamHandler]
 
@@ -47,6 +47,8 @@ def test_configure_logging_prevent_duplicate_handlers(tmp_path: Path):
 
 
 def test_logging_writes_to_file(tmp_path: Path):
+
+    #Create temp file and path     
     test_log_file = tmp_path / "test.log"
     configure_logging(log_path=test_log_file)
 
@@ -54,7 +56,7 @@ def test_logging_writes_to_file(tmp_path: Path):
     logger.debug("Test debug message")
     logger.info("Test info message")
 
-    # Tvinga skrivning och stäng filen så disken uppdateras helt
+    # Force a write and close the file so the disk is fully updated.
     for handler in logger.handlers[:]:
         handler.flush()
         handler.close()
