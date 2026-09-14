@@ -41,7 +41,7 @@ def save_csv (file_name: str, df: pd.DataFrame) -> None:
 
     try:
         df.to_csv(_output_path, index=False, encoding="utf-8")
-        logger.error(f"Saved {len(df)} rows to: {_output_path}")
+        logger.info(f"Saved {len(df)} rows to: {_output_path}")
 
     except OSError as error:
         logger.error(f"Failed to write CSV file at: {_output_path}: {error}")
