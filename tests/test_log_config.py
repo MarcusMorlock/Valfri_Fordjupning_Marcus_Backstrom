@@ -2,6 +2,7 @@
 
 import logging
 import pytest
+import re
 
 from pathlib import Path
 
@@ -20,7 +21,7 @@ def cleanup_logger():
         handler.close()
 
 
-def test_configure_logging_creates_directory_and_file(tmp_path: Path):
+def test_configure_logging_creates_directory_and_file(tmp_path: Path) -> None:
 
     test_log_file = tmp_path / "custom_logs" / "test.log"
     configure_logging(log_path=test_log_file)
@@ -29,7 +30,7 @@ def test_configure_logging_creates_directory_and_file(tmp_path: Path):
     assert test_log_file.exists()
 
 
-def test_configure_logging_prevent_duplicate_handlers(tmp_path: Path):
+def test_configure_logging_prevent_duplicate_handlers(tmp_path: Path) -> None:
 
     test_log_file = tmp_path / "test.log"
     logger = logging.getLogger(LOGGER_NAME)
@@ -46,7 +47,7 @@ def test_configure_logging_prevent_duplicate_handlers(tmp_path: Path):
     assert len(stream_handlers) == 1
 
 
-def test_logging_writes_to_file(tmp_path: Path):
+def test_logging_writes_to_file(tmp_path: Path) -> None:
 
     #Create temp file and path     
     test_log_file = tmp_path / "test.log"
@@ -64,3 +65,25 @@ def test_logging_writes_to_file(tmp_path: Path):
     content = test_log_file.read_text(encoding="utf-8")
     assert "Test debug message" in content
     assert "Test info message" in content
+
+def test_log_format_structure(tmp_path: Path) -> None:
+    test_log_file = tmp_path / "format_test.log"
+    configure_logging(log_path=test_log_file)
+
+    logger = logging.getLogger(LOGGER_NAME)
+    logger.info("Any Message")
+
+    for handler in logger.handlers[:]:
+        handler.flush()
+        handler.close()
+
+    content = test_log_file.read_text(encoding="utf-8").strip()
+
+    # Regex for the 4 format parts:
+    # 1. Time stamp: YYYY-MM-DD HH:MM:SS
+    # 2. Level: t.ex. INFO, DEBUG, ERROR ([A-Z]+)
+    # 3. Logger Name: Characters (\w+)
+    # 4. Message: Test (.+)
+    pattern = r"^\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2} \| [A-Z]+ \| \w+ \| .+$"
+
+    assert re.match(pattern, content) is not None
