@@ -29,7 +29,7 @@ def load_json(file_path: Path) -> list[dict]:
         logger.error(f"Failed to read JSON file at {file_path}: {error}")
         raise ValueError(f"Could not read file as JSON: {file_path}") from error
 
-def save_csv (file_name: str, data: list[dict]) -> None:
+def save_csv (file_name: str, df: pd.DataFrame) -> None:
 
     if not file_name.endswith(".csv"):
         file_name = f"{file_name}.csv"
@@ -40,13 +40,6 @@ def save_csv (file_name: str, data: list[dict]) -> None:
     _output_path.parent.mkdir(parents=True, exist_ok=True)
 
     try:
-        df = pd.DataFrame(data)
-    except (ValueError, TypeError) as error:
-        logger(f"Failed to convert data to DataFrame: {error}")
-        raise ValueError("Could not convert data to DataFrame.") from error
-
-    try:
-
         df.to_csv(_output_path, index=False, encoding="utf-8")
         logger.error(f"Saved {len(df)} rows to: {_output_path}")
 
