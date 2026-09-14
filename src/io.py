@@ -3,7 +3,7 @@ import logging
 
 
 from pathlib import Path
-from src.log_config import LOGGER_NAME
+from src import LOGGER_NAME
 
 import pandas as pd
 
