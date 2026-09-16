@@ -3,7 +3,7 @@ import logging
 
 
 from pathlib import Path
-from src import LOGGER_NAME
+from . import LOGGER_NAME
 
 import pandas as pd
 
@@ -11,6 +11,7 @@ import pandas as pd
 logger = logging.getLogger(LOGGER_NAME)
 
 def load_json(file_path: Path) -> list[dict]:
+    """Load JSON file from file_path."""
 
     file_path = Path(file_path)
 
@@ -35,7 +36,7 @@ def save_csv (file_name: str, df: pd.DataFrame) -> None:
         file_name = f"{file_name}.csv"
 
     clean_name = Path(file_name).name  
-    _output_path = Path("data") / clean_name
+    _output_path = Path("output") / clean_name
 
     _output_path.parent.mkdir(parents=True, exist_ok=True)
 
