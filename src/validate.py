@@ -8,13 +8,6 @@ from types import MappingProxyType
 from pydantic import ValidationError, TypeAdapter
 from . import LOGGER_NAME, TemperatureRead
 
-# What is commonly made mistakes or data change´s. te.x remove Ö for O if you don´t have utf-8 allowed at some stage.
-KNOWN_REGION_MAPPINGS = MappingProxyType({
-    "orebro": "Örebro",
-    "sthlm": "Stockholm",
-    "stockholms": "Stockholm",
-})
-
 
 logger = logging.getLogger(LOGGER_NAME)
 
@@ -49,11 +42,5 @@ def _validate_region(
     dataset_name: str, 
     known_region_mapping: dict | None = None
     ) -> pd.DataFrame:
-
-    mapping = known_region_mapping if known_region_mapping is not None else KNOWN_REGION_MAPPINGS
-
-    
-
-
 
     return None
