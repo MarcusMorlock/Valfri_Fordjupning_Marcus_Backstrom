@@ -3,10 +3,10 @@ import json
 from pathlib import Path
 
 correct_data = [
-    {"sensor_id": "S1", "region": "Orebro", "sector": "W", "temperature": 20.0},
-    {"sensor_id": "S2", "region": "Orebro", "sector": "C", "temperature": 21.2},
-    {"sensor_id": "S3", "region": "Orebro", "sector": "SE", "temperature": 20.3},
-    {"sensor_id": "S4", "region": "Orebro", "sector": "S", "temperature": 20.5},
+    {"sensor_id": "S1", "region": "Örebro", "sector": "W", "temperature": 20.0},
+    {"sensor_id": "S2", "region": "Örebro", "sector": "C", "temperature": 21.2},
+    {"sensor_id": "S3", "region": "Örebro", "sector": "SE", "temperature": 20.3},
+    {"sensor_id": "S4", "region": "Örebro", "sector": "S", "temperature": 20.5},
     {"sensor_id": "S5", "region": "Stockholm", "sector": "C", "temperature": 10.0}
 ]
 

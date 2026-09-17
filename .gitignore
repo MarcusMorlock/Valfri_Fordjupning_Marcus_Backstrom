@@ -220,6 +220,7 @@ __marimo__/
 #Personal
 choosen.md
 uppgift.md
+testing.ipynb
 
 # Utdata och rapporter (skapas vid körtid)
 output/
@@ -228,3 +229,4 @@ reports/
 
 # Loggmappar
 logs/
+
