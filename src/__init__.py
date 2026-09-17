@@ -6,7 +6,7 @@ from .log_config import(
 )
 
 from .io import(
-    load_json,
+    load_json_to_dataframe,
     save_csv
 )
 
@@ -21,7 +21,7 @@ from .schemas import(
 __all__ = [
     "LOGGER_NAME",
     "configure_logging",
-    "load_json",
+    "load_json_to_dataframe",
     "save_csv",
     "TemperatureRead"
 ]

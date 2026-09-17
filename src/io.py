@@ -10,7 +10,7 @@ import pandas as pd
 
 logger = logging.getLogger(LOGGER_NAME)
 
-def load_json(file_path: Path) -> list[dict]:
+def load_json_to_dataframe(file_path: Path) -> pd.DataFrame:
     """Load JSON file from file_path."""
 
     file_path = Path(file_path)
@@ -24,7 +24,10 @@ def load_json(file_path: Path) -> list[dict]:
         with open(file_path, "r", encoding="utf-8") as f:
             data = json.load(f)
         logger.info(f"Successfully read JSON file at: {file_path}")
-        return data
+        if isinstance(data, dict):
+            data = [data]
+
+        return pd.DataFrame(data)
 
     except json.JSONDecodeError as error:
         logger.error(f"Failed to read JSON file at {file_path}: {error}")

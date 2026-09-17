@@ -7,6 +7,7 @@ import pandas as pd
 from types import MappingProxyType
 from pydantic import ValidationError, TypeAdapter
 from . import LOGGER_NAME, TemperatureRead
+from .transform import auto_correct_regions
 
 
 logger = logging.getLogger(LOGGER_NAME)
@@ -40,7 +41,24 @@ def _validate_temperature_records(data: list[dict], dataset_name: str) -> pd.Dat
 def _validate_region(
     df: pd.DataFrame, 
     dataset_name: str, 
-    known_region_mapping: dict | None = None
+    valid_regions: list[str]
     ) -> pd.DataFrame:
 
-    return None
+    df_copy = df.copy()
+
+
+
+    df_corrected = auto_correct_regions(df_copy)
+
+    df_corrected["region"] = df_corrected["region"].str.upper()
+
+
+    for _, row in df_corrected.iterrows():
+        if row["region"] in valid_regions:
+            row["flagged_for_manuel_review"] = False
+        else:
+            row["flagged_for_manuel_review"] = True
+        df_corrected.apply(row)
+    
+
+    return df_corrected
