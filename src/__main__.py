@@ -9,15 +9,16 @@ from . import (
     generate_mock_data,
     load_json_to_dataframe,
     auto_correct_regions,
-    validate_temperature_records
+    validate_temperature_records,
+    save_csv
 )
 
 data_names = [
-"correct_data.json",
-"include_null_data.json",
-"incorrect_data.json",
-"mixed_failure_data.json",
-"unit_incorrect_data.json",
+"correct_data",
+"include_null_data",
+"incorrect_data",
+"mixed_failure_data",
+"unit_incorrect_data",
 ]
 
 def main() -> None:
@@ -37,7 +38,7 @@ def main() -> None:
 
     for data_name in data_names:
 
-        df_mock = load_json_to_dataframe(file_path=f"{MOCK_DATA_FOLDER}/{data_name}")
+        df_mock = load_json_to_dataframe(file_path=f"{MOCK_DATA_FOLDER}/{data_name}.json")
 
         print(f"loaded mock data: {data_name}")
         #Auto correct common misspelling mistakes.
@@ -51,6 +52,11 @@ def main() -> None:
         print(f"Validated using pydantic schema on {df_mock}")
 
         print(validated_df_mock)
+
+        save_csv(data_name, validated_df_mock)
+        print(f"saved {data_name} as CSV to folder output.")
+
+
 
 
 if __name__ == "__main__":
