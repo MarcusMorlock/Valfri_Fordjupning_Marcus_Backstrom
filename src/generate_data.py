@@ -4,6 +4,14 @@ from pathlib import Path
 
 MOCK_DATA_FOLDER = "data"
 
+DATA_NAMES = [
+"correct_data",
+"include_null_data",
+"incorrect_data",
+"mixed_failure_data",
+"unit_incorrect_data",
+]
+
 def generate_mock_data() -> None:
     correct_data = [
         {"sensor_id": "S1", "region": "Örebro", "sector": "W", "temperature": 20.0},
