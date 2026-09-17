@@ -14,14 +14,15 @@ from .schemas import(
     TemperatureRead
 )
 
-# from .validate import(
-
-# )
+from .validate import(
+    validate_temperature_records
+)
 
 __all__ = [
     "LOGGER_NAME",
     "configure_logging",
     "load_json_to_dataframe",
     "save_csv",
-    "TemperatureRead"
+    "TemperatureRead",
+    "validate_temperature_records"
 ]

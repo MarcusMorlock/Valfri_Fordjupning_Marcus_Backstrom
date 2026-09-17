@@ -1,25 +1,25 @@
 [
   {
     "sensor_id": "S1",
-    "region": "Orebro",
+    "region": "Örebro",
     "sector": "W",
     "temperature": 20.0
   },
   {
     "sensor_id": "S2",
-    "region": "Orebro",
+    "region": "Örebro",
     "sector": "C",
     "temperature": 21.2
   },
   {
     "sensor_id": "S3",
-    "region": "Orebro",
+    "region": "Örebro",
     "sector": "SE",
     "temperature": 20.3
   },
   {
     "sensor_id": "S4",
-    "region": "Orebro",
+    "region": "Örebro",
     "sector": "S",
     "temperature": 20.5
   },

@@ -14,18 +14,26 @@ SectorType = Literal[
     "Centrum", "C"
 ]
 
+ALLOWED_REGIONS = {"Örebro", "Stockholm", "Göteborg", "Malmö"}
 
 class TemperatureRead(BaseModel):
     sensor_id: str = Field(min_length=2)
-    region: str = Field(min_length=1)
+    region: str = Field(min_length=2)
     sector: SectorType
-    # Temperatures above 40.0 °C are immediately rejected as implausible/sensor errors/input error. and below -40.0 °C as implausible/sensor errors/input error.
     temperature: float = Field(ge=-40.0, le=40.0)
 
     @field_validator("region")
     @classmethod
-    def validate_region_not_junk(cls, value: str) -> str:
+    def validate_region(cls, value: str) -> str:
         cleaned = value.strip().lower()
-        if cleaned in ["none", "null", "n/a", "", "unknown"]:
+
+        if cleaned in ["none", "null", "n/a", "", "unknown", "nan", "undefined"]:
             raise ValueError(f"Invalid region placeholder: '{value}'")
+
+
+        if value not in ALLOWED_REGIONS:
+            raise ValueError(
+                f"Unrecognized region '{value}'. Flagged for manual review."
+            )
+
         return value
