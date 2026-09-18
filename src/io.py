@@ -15,12 +15,13 @@ def load_json_to_dataframe(file_path: Path) -> pd.DataFrame:
 
     file_path = Path(file_path)
 
+    #Check if file exist
     if not file_path.exists():
         logger.error(f"File could not be found: {file_path}")
         raise FileNotFoundError(f"Could not find file {file_path}")
 
     try:
-
+        #Open folder and file in file_path and read it as json
         with open(file_path, "r", encoding="utf-8") as f:
             data = json.load(f)
         logger.info(f"Successfully read JSON file at: {file_path}")

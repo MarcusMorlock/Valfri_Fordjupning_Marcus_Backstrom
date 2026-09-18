@@ -25,15 +25,19 @@ class TemperatureRead(BaseModel):
     @field_validator("region")
     @classmethod
     def validate_region(cls, value: str) -> str:
-        cleaned = value.strip().lower()
+        cleaned = value.strip()
 
-        if cleaned in ["none", "null", "n/a", "", "unknown", "nan", "undefined"]:
+        # Check if "region" is one of the common placeholders and if they are turn error.
+        if cleaned.lower() in ["none", "null", "n/a", "", "unknown", "nan", "undefined"]:
             raise ValueError(f"Invalid region placeholder: '{value}'")
 
+        # Omvandla "stockholm" eller "STOCKHOLM" -> "Stockholm"
+        formatted = cleaned.title()
 
-        if value not in ALLOWED_REGIONS:
+        # Check if "region" is in the ALLOWED_REGIONS.
+        if formatted not in ALLOWED_REGIONS:
             raise ValueError(
                 f"Unrecognized region '{value}'. Flagged for manual review."
             )
 
-        return value
+        return formatted
