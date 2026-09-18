@@ -53,7 +53,7 @@ def generate_mock_data() -> None:
         {"sensor_id": "S5", "region": "sthlm", "sector": "C", "temperature": 10.0}
     ]
 
-    # 
+    
     datasets = {
         "correct_data.json": correct_data,
         "incorrect_data.json": incorrect_data,
