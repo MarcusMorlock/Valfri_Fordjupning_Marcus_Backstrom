@@ -18,7 +18,7 @@ ALLOWED_REGIONS = {"Örebro", "Stockholm", "Göteborg", "Malmö"}
 
 class TemperatureRead(BaseModel):
     sensor_id: str = Field(min_length=2)
-    region: str = Field(min_length=2)
+    region: str = Field(min_length=2,max_length=15)
     sector: SectorType
     temperature: float = Field(ge=-40.0, le=40.0)
 
