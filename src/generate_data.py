@@ -50,7 +50,7 @@ def generate_mock_data() -> None:
         {"sensor_id": "S2", "region": "Orebro", "sector": "C", "temperature": 51.2},
         {"sensor_id": "S3", "region": "orobo", "sector": "SE", "temperature": 20.3},
         {"sensor_id": "S4", "region": "Orebro", "sector": "Söder", "temperature": 30.5},
-        {"sensor_id": "S5", "region": "Stockholm", "sector": "C", "temperature": 10.0}
+        {"sensor_id": "S5", "region": "sthlm", "sector": "C", "temperature": 10.0}
     ]
 
     # 
